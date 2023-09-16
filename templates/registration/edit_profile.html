@@ -1,0 +1,14 @@
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+            <button type="submit">Edit Profile</button>
+
+            {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+    
+    </form>
+
