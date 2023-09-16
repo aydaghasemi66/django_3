@@ -16,6 +16,7 @@ def home (request):
         doctor_count = Doctor.objects.all().count()
         department_count = Department.objects.all().count()
         service_count=Services.objects.all().count()
+        testimonials=Testimonials.objects.all()
         context = {
             'services':services,
             'department':department,
@@ -23,6 +24,7 @@ def home (request):
             'dec' : department_count,
             'dc': doctor_count,
             'sc': service_count,
+            'test':testimonials,
         }
 
         return render(request,"root/index.html" , context=context)   

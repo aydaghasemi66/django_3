@@ -76,3 +76,11 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.name
+class Testimonials(models.Model):
+    user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    comment=models.TextField()
+    job=models.CharField(max_length=100)
+    image=models.ImageField(upload_to='testimonials',default='user.png')
+    def __str__(self):
+        return self.user.username
+

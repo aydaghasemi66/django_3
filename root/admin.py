@@ -11,4 +11,5 @@ admin.site.register(Doctor)
 admin.site.register(Appointment)
 admin.site.register(Job)
 admin.site.register(Department)
+admin.site.register(Testimonials)
 
