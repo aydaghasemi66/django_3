@@ -13,10 +13,16 @@ def home (request):
         services = Services.objects.filter(status=True)
         department=Department.objects.all()
         doctor=Doctor.objects.all()
+        doctor_count = Doctor.objects.all().count()
+        department_count = Department.objects.all().count()
+        service_count=Services.objects.all().count()
         context = {
             'services':services,
             'department':department,
             'doctor':doctor,
+            'dec' : department_count,
+            'dc': doctor_count,
+            'sc': service_count,
         }
 
         return render(request,"root/index.html" , context=context)   
