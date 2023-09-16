@@ -8,8 +8,6 @@ from .forms import *
 
 # Create your views here.
 
-
-
 def home (request):
     if request.method =='GET':
         services = Services.objects.filter(status=True)
@@ -32,37 +30,21 @@ def home (request):
             messages.add_message(request,messages.ERROR,'Invalid')
             return redirect('root:home')
         
-    if request.method == 'POST' and len(request.POST) > 2:
-        form2 = ContactUsForm(request.POST)
-        if form2.is_valid():
-            form2.save()
+    elif request.method == 'POST' and len(request.POST) == 5:
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
             messages.add_message(request, messages.SUCCESS, 'We received your message')
         else:
             messages.add_message(request, messages.ERROR, 'invalid data')
         return redirect('root:home')
-    
-def appointment(request):
-    if request.method == 'GET':
-        services = Services.objects.filter(status=True)
-        department=Department.objects.all()
-        doctor=Doctor.objects.all()
-        context = {
-            'services':services,
-            'department':department,
-            'doctor':doctor,
-        }
-
-        return render(request,"index.html",context=context)   
-
-    elif request.method == 'POST':
+    elif request.method == 'POST' and len(request.POST) == 8:
         form = AppointmentForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Appointment request submitted successfully.')
-            return redirect('root:home')
+            messages.add_message(request, messages.SUCCESS, 'submited')
         else:
-            print(form.errors)
-            messages.error(request, 'Invalid data. Please check the form fields.')
-            return redirect('root:home')
+            messages.add_message(request, messages.ERROR, 'invalid data')
+        return redirect('root:home')
 
 

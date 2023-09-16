@@ -1,11 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Login{% endblock 'title' %}
+{% block 'content' %}
+<br><br><br><br><br><br><br><br>
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">Login</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit">Login</button>
     {% if messages %}
         {% for message in messages %}
             {{message}}
         {% endfor %}
     {% endif %}
 </form>
-<p><a href={% url 'password_reset' %}>kheili khengi ke passwordet yadet rafte</a></p>
+<p><a href={% url 'password_reset' %}>&nbsp;&nbsp;&nbsp;Forgot password</a></p>
+{% endblock 'content'%}
